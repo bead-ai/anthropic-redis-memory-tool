@@ -149,6 +149,137 @@ new RedisMemoryTool(redis: Redis, config?: RedisMemoryToolConfig)
 | `clearAll()`           | Clear all memories for this agent context |
 | `getAllPaths()`        | Get all stored paths                      |
 
+## Development
+
+### Prerequisites
+
+- Node.js >= 18
+- npm
+
+### Setup
+
+```bash
+npm install
+```
+
+### Scripts
+
+```bash
+npm run build        # Build the package
+npm run dev          # Build with watch mode
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint errors
+npm run format       # Format code with Prettier
+npm run format:check # Check code formatting
+npm run typecheck    # Run TypeScript type checking
+```
+
+## Commit Convention
+
+This project uses [Conventional Commits](https://www.conventionalcommits.org/) specification. Commit messages are enforced via [commitlint](https://commitlint.js.org/).
+
+### Commit Message Format
+
+```
+<type>(<scope>): <subject>
+```
+
+### Types
+
+| Type       | Description                                             |
+| ---------- | ------------------------------------------------------- |
+| `feat`     | A new feature                                           |
+| `fix`      | A bug fix                                               |
+| `docs`     | Documentation only changes                              |
+| `style`    | Code style changes (formatting, semicolons)             |
+| `refactor` | Code change that neither fixes a bug nor adds a feature |
+| `perf`     | Performance improvements                                |
+| `test`     | Adding or correcting tests                              |
+| `build`    | Changes to build system or dependencies                 |
+| `ci`       | Changes to CI configuration                             |
+| `chore`    | Other changes that don't modify src or test             |
+| `revert`   | Reverts a previous commit                               |
+
+### Examples
+
+```bash
+feat: add redis connection pooling
+fix: handle connection timeout errors
+docs: update installation instructions
+refactor(memory): simplify memory store logic
+```
+
+## Release Process
+
+This project uses [standard-version](https://github.com/conventional-changelog/standard-version) for automated versioning and CHANGELOG generation based on Conventional Commits.
+
+### Creating a Release
+
+1. **Ensure all changes are committed** following the conventional commit format.
+
+2. **Run the release command:**
+
+   ```bash
+   # Automatic version bump based on commits (recommended)
+   npm run release
+
+   # Or specify version type explicitly
+   npm run release:patch  # 0.1.0 -> 0.1.1
+   npm run release:minor  # 0.1.0 -> 0.2.0
+   npm run release:major  # 0.1.0 -> 1.0.0
+
+   # First release (won't bump version, just creates changelog)
+   npm run release:first
+
+   # Dry run to preview changes
+   npm run release:dry
+   ```
+
+3. **Push the commit and tag:**
+
+   ```bash
+   git push --follow-tags origin main
+   ```
+
+4. **GitHub Actions** will automatically:
+   - Create a GitHub Release
+   - Publish to npm (requires `NPM_TOKEN` secret)
+
+### Version Bump Rules
+
+| Commit Type       | Version Bump |
+| ----------------- | ------------ |
+| `fix`             | Patch        |
+| `feat`            | Minor        |
+| `BREAKING CHANGE` | Major        |
+
+### Manual Version Override
+
+To release a specific version:
+
+```bash
+npx standard-version --release-as 1.0.0
+```
+
+## CI/CD
+
+### GitHub Actions Workflows
+
+- **CI** (`ci.yml`): Runs on push/PR to main
+  - Linting and type checking
+  - Build verification
+  - Commit message validation (PRs only)
+
+- **Release** (`release.yml`): Runs on version tags (`v*`)
+  - Creates GitHub Release
+  - Publishes to npm
+
+### Required Secrets
+
+| Secret      | Description                         |
+| ----------- | ----------------------------------- |
+| `NPM_TOKEN` | npm automation token for publishing |
+
 ## License
 
 MIT
