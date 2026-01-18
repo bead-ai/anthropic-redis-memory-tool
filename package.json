@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "private": false,
   "exports": {
     ".": {
       "import": {
@@ -40,12 +41,9 @@
     "sdk",
     "tool"
   ],
-  "author": "",
+  "author": "Bead Technologies Inc. <founders@usebead.ai>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
+  "repository": "github:bead-ai/anthropic-redis-memory-tool",
   "engines": {
     "node": ">=18"
   },
