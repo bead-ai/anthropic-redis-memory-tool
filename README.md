@@ -5,7 +5,7 @@ Redis implementation for Anthropic Agent SDK memory tool handlers. This package 
 ## Installation
 
 ```bash
-npm install anthropic-redis-memory-tool ioredis @anthropic-ai/sdk
+npm install anthropic-redis-memory-tool
 ```
 
 ## Usage
@@ -172,41 +172,6 @@ npm run lint:fix     # Fix ESLint errors
 npm run format       # Format code with Prettier
 npm run format:check # Check code formatting
 npm run typecheck    # Run TypeScript type checking
-```
-
-## Commit Convention
-
-This project uses [Conventional Commits](https://www.conventionalcommits.org/) specification. Commit messages are enforced via [commitlint](https://commitlint.js.org/).
-
-### Commit Message Format
-
-```
-<type>(<scope>): <subject>
-```
-
-### Types
-
-| Type       | Description                                             |
-| ---------- | ------------------------------------------------------- |
-| `feat`     | A new feature                                           |
-| `fix`      | A bug fix                                               |
-| `docs`     | Documentation only changes                              |
-| `style`    | Code style changes (formatting, semicolons)             |
-| `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `perf`     | Performance improvements                                |
-| `test`     | Adding or correcting tests                              |
-| `build`    | Changes to build system or dependencies                 |
-| `ci`       | Changes to CI configuration                             |
-| `chore`    | Other changes that don't modify src or test             |
-| `revert`   | Reverts a previous commit                               |
-
-### Examples
-
-```bash
-feat: add redis connection pooling
-fix: handle connection timeout errors
-docs: update installation instructions
-refactor(memory): simplify memory store logic
 ```
 
 ## Release Process
