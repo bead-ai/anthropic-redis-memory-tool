@@ -136,22 +136,6 @@ export class RedisMemoryTool implements MemoryToolHandlers {
   }
 
   /**
-   * Checks if a path exists in Redis.
-   */
-  private async exists(memoryPath: string): Promise<boolean> {
-    const key = this.pathToKey(memoryPath);
-
-    // Check if it's a file
-    const fileExists = await this.redis.exists(key);
-    if (fileExists) return true;
-
-    // Check if it's a directory (has children)
-    const pattern = `${key}/*`;
-    const keys = await this.redis.keys(pattern);
-    return keys.length > 0;
-  }
-
-  /**
    * Checks if a path is a file (as opposed to a directory).
    */
   private async isFile(memoryPath: string): Promise<boolean> {
