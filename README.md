@@ -249,13 +249,14 @@ This project uses [release-please](https://github.com/googleapis/release-please)
 ### Required Setup
 
 **Repository Settings** (Settings → Actions → General → Workflow permissions):
+
 - ☑️ Allow GitHub Actions to create and approve pull requests
 
 ### Required Secrets
 
-| Secret                 | Description                                            |
-| ---------------------- | ------------------------------------------------------ |
-| `NPM_TOKEN`            | npm automation token for publishing                    |
+| Secret                 | Description                                                                                                                   |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `NPM_TOKEN`            | npm automation token for publishing                                                                                           |
 | `RELEASE_PLEASE_TOKEN` | (Optional) PAT with `contents:write` and `pull-requests:write` scopes. Use if you can't enable the workflow permission above. |
 
 ## License
