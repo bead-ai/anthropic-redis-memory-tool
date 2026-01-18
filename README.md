@@ -211,39 +211,18 @@ refactor(memory): simplify memory store logic
 
 ## Release Process
 
-This project uses [standard-version](https://github.com/conventional-changelog/standard-version) for automated versioning and CHANGELOG generation based on Conventional Commits.
+This project uses [release-please](https://github.com/googleapis/release-please) for automated versioning and CHANGELOG generation based on Conventional Commits.
 
-### Creating a Release
+### How It Works
 
-1. **Ensure all changes are committed** following the conventional commit format.
-
-2. **Run the release command:**
-
-   ```bash
-   # Automatic version bump based on commits (recommended)
-   npm run release
-
-   # Or specify version type explicitly
-   npm run release:patch  # 0.1.0 -> 0.1.1
-   npm run release:minor  # 0.1.0 -> 0.2.0
-   npm run release:major  # 0.1.0 -> 1.0.0
-
-   # First release (won't bump version, just creates changelog)
-   npm run release:first
-
-   # Dry run to preview changes
-   npm run release:dry
-   ```
-
-3. **Push the commit and tag:**
-
-   ```bash
-   git push --follow-tags origin main
-   ```
-
-4. **GitHub Actions** will automatically:
-   - Create a GitHub Release
-   - Publish to npm (requires `NPM_TOKEN` secret)
+1. **Push commits to `main`** following the conventional commit format
+2. **Release Please** automatically creates/updates a Release PR with:
+   - Version bump based on commit types
+   - Updated CHANGELOG.md
+   - Updated package.json version
+3. **Merge the Release PR** to trigger:
+   - GitHub Release creation
+   - npm publish
 
 ### Version Bump Rules
 
@@ -253,14 +232,6 @@ This project uses [standard-version](https://github.com/conventional-changelog/s
 | `feat`            | Minor        |
 | `BREAKING CHANGE` | Major        |
 
-### Manual Version Override
-
-To release a specific version:
-
-```bash
-npx standard-version --release-as 1.0.0
-```
-
 ## CI/CD
 
 ### GitHub Actions Workflows
@@ -268,10 +239,11 @@ npx standard-version --release-as 1.0.0
 - **CI** (`ci.yml`): Runs on push/PR to main
   - Linting and type checking
   - Build verification
-  - Commit message validation (PRs only)
 
-- **Release** (`release.yml`): Runs on version tags (`v*`)
-  - Creates GitHub Release
+- **Release Please** (`release-please.yml`): Runs on push to main
+  - Creates/updates Release PR with changelog and version bump
+
+- **Publish** (`release.yml`): Runs when a release is published
   - Publishes to npm
 
 ### Required Secrets
