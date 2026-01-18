@@ -23,6 +23,9 @@ jobs:
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # Use RELEASE_PLEASE_TOKEN if available, otherwise fall back to GITHUB_TOKEN
+          # Note: GITHUB_TOKEN requires "Allow GitHub Actions to create and approve pull requests"
+          # to be enabled in Settings > Actions > General > Workflow permissions
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
