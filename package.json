@@ -43,7 +43,10 @@
   ],
   "author": "Bead Technologies Inc. <founders@usebead.ai>",
   "license": "MIT",
-  "repository": "github:bead-ai/anthropic-redis-memory-tool",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bead-ai/anthropic-redis-memory-tool.git"
+  },
   "engines": {
     "node": ">=18"
   },
@@ -67,5 +70,10 @@
     "@anthropic-ai/sdk": {
       "optional": true
     }
-  }
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bead-ai/anthropic-redis-memory-tool/issues"
+  },
+  "homepage": "https://github.com/bead-ai/anthropic-redis-memory-tool#readme"
 }
