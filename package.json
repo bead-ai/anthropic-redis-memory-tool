@@ -1,6 +1,6 @@
 {
   "name": "anthropic-redis-memory-tool",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Redis implementation for Anthropic Agent SDK memory tool handlers",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
